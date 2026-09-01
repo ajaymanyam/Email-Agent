@@ -2,17 +2,13 @@ import axios, { AxiosInstance } from 'axios';
 import { useAuthStore } from '@/store/authStore';
 
 export const getBaseUrl = (): string => {
-  if (typeof window !== 'undefined') {
-    const host = window.location.hostname;
-    if (host && host !== 'localhost' && host !== '127.0.0.1') {
-      return `http://${host}:5000/api`;
-    }
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL.replace(/\/+$/, '');
   }
-  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+  return 'http://localhost:5000/api';
 };
 
 export const api: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
   headers: { 'Content-Type': 'application/json' },
   timeout: 30000,
 });
