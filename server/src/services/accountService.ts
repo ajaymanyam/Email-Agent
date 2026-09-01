@@ -1,5 +1,8 @@
 import { EmailAccount, IEmailAccount } from '../models/EmailAccount';
 import { EmailMessage } from '../models/EmailMessage';
+import { ActionItem } from '../models/ActionItem';
+import { AiDraft } from '../models/AiDraft';
+import { ScheduledEmail } from '../models/ScheduledEmail';
 import {
   getAuthorizationUrl,
   parseAndValidateState,
@@ -202,13 +205,15 @@ export const accountService = {
     account.encryptedRefreshToken = '';
     await account.save();
 
-    // Wipe all cached synchronized emails for this account immediately upon disconnection
-    await EmailMessage.deleteMany({
-      owner: userId,
-      emailAccountId: accountId,
-    });
+    // Wipe all cached synchronized emails, AI action items, auto-drafts, and pending scheduled emails for this account
+    await Promise.all([
+      EmailMessage.deleteMany({ owner: userId, emailAccountId: accountId }),
+      ActionItem.deleteMany({ owner: userId, emailAccountId: accountId }),
+      AiDraft.deleteMany({ owner: userId, emailAccountId: accountId }),
+      ScheduledEmail.deleteMany({ owner: userId, emailAccountId: accountId, status: 'pending' }),
+    ]);
 
-    logger.info('Email account disconnected and cached emails purged', {
+    logger.info('Email account disconnected and all associated emails, AI tasks, and drafts purged', {
       userId,
       accountId,
       email: account.email,
