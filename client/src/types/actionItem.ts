@@ -14,6 +14,7 @@ export interface ActionItem {
   status: TaskStatus;
   sourceEmailSubject?: string;
   sourceEmailSender?: string;
+  calendarEventId?: string;
   createdAt: string;
   updatedAt: string;
 }

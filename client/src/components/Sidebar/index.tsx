@@ -21,6 +21,7 @@ import {
   PlusCircle,
   Users,
   ChevronLeft,
+  ChevronRight,
   Zap,
   Bot,
 } from 'lucide-react';
