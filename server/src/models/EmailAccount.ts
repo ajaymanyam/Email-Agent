@@ -9,8 +9,8 @@ export interface IEmailAccount extends Document {
   provider: EmailProviderType;
   email: string;
   providerAccountId: string;
-  encryptedAccessToken: string;
-  encryptedRefreshToken: string;
+  encryptedAccessToken?: string;
+  encryptedRefreshToken?: string;
   scopes: string[];
   expiresAt: Date;
   isConnected: boolean;
@@ -44,12 +44,12 @@ const emailAccountSchema = new Schema<IEmailAccount>(
     },
     encryptedAccessToken: {
       type: String,
-      required: [true, 'Access token is required'],
+      default: '',
       select: false, // Never return tokens in standard queries
     },
     encryptedRefreshToken: {
       type: String,
-      required: [true, 'Refresh token is required'],
+      default: '',
       select: false, // Never return tokens in standard queries
     },
     scopes: {
