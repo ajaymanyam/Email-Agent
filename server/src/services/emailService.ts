@@ -351,7 +351,7 @@ export const emailService = {
         cc: payload.cc,
         bcc: payload.bcc,
         subject: payload.subject,
-        bodyText: payload.bodyText,
+        bodyText: payload.bodyText || '',
         bodyHtml: payload.bodyHtml,
       });
     } else {

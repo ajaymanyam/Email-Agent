@@ -16,6 +16,7 @@ export interface IActionItem extends Document {
   status: TaskStatus;
   sourceEmailSubject?: string;
   sourceEmailSender?: string;
+  calendarEventId?: string;
   createdAt: Date;
   updatedAt: Date;
 }

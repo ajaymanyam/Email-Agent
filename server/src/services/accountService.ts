@@ -270,7 +270,7 @@ export const accountService = {
       email: account.email,
     });
 
-    return accessToken;
+    return refreshed.accessToken;
   },
 
   /**
