@@ -2,12 +2,8 @@
   "name": "intelligent-email-assistant",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "client",
-    "server"
-  ],
   "scripts": {
-    "build": "npm --prefix client run build",
-    "start": "npm --prefix client run start"
+    "build": "cd client && npm install && npm run build",
+    "start": "cd client && npm start"
   }
 }
