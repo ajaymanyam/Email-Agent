@@ -12,7 +12,9 @@ export const AccountSwitcher: React.FC = () => {
     fetchAccounts();
   }, []);
 
-  if (accounts.length === 0) {
+  const connectedAccounts = accounts.filter((a) => a.isConnected && a.status === 'connected');
+
+  if (connectedAccounts.length === 0) {
     return (
       <button
         onClick={() => router.push('/accounts')}
@@ -66,7 +68,7 @@ export const AccountSwitcher: React.FC = () => {
               {!activeAccount && <Check className="w-3.5 h-3.5 text-purple-400 shrink-0" />}
             </button>
 
-            {accounts.map((acc) => {
+            {connectedAccounts.map((acc) => {
               const isSelected = activeAccount?._id === acc._id;
               return (
                 <button

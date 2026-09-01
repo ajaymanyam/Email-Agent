@@ -25,11 +25,11 @@ export const useAccountStore = create<AccountStore>()(
       error: null,
 
       setAccounts: (accounts) => {
+        const connected = accounts.filter((a) => a.isConnected && a.status === 'connected');
         const currentActive = get().activeAccount;
         const active =
-          accounts.find((a) => a._id === currentActive?._id) ||
-          accounts.find((a) => a.isConnected) ||
-          accounts[0] ||
+          connected.find((a) => a._id === currentActive?._id) ||
+          connected[0] ||
           null;
 
         set({ accounts, activeAccount: active });
@@ -41,11 +41,11 @@ export const useAccountStore = create<AccountStore>()(
         set({ isLoading: true, error: null });
         try {
           const accounts = await accountApi.listAccounts();
+          const connected = accounts.filter((a) => a.isConnected && a.status === 'connected');
           const currentActive = get().activeAccount;
           const active =
-            accounts.find((a) => a._id === currentActive?._id) ||
-            accounts.find((a) => a.isConnected) ||
-            accounts[0] ||
+            connected.find((a) => a._id === currentActive?._id) ||
+            connected[0] ||
             null;
 
           set({ accounts, activeAccount: active, isLoading: false });
@@ -56,6 +56,10 @@ export const useAccountStore = create<AccountStore>()(
 
       disconnectAccount: async (id: string) => {
         await accountApi.disconnectAccount(id);
+        const currentActive = get().activeAccount;
+        if (currentActive?._id === id) {
+          set({ activeAccount: null });
+        }
         // Clear all cached emails in the UI immediately
         useEmailStore.setState({ emails: [], total: 0, activeThread: null, selectedEmail: null });
         await get().fetchAccounts();
