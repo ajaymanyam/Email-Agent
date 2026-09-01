@@ -10,6 +10,23 @@
 
 ---
 
+## 🌐 Live Deployments & Demo Links
+
+- **🚀 Live Frontend Application (Vercel)**: **[https://email-agent-lime.vercel.app](https://email-agent-lime.vercel.app)**
+- **⚡ Live Backend API Server (Render)**: **[https://email-agent-zdec.onrender.com](https://email-agent-zdec.onrender.com)**
+- **📊 Health Check Endpoint**: [https://email-agent-zdec.onrender.com/api/health](https://email-agent-zdec.onrender.com/api/health)
+- **💻 GitHub Source Code**: [https://github.com/ajaymanyam/Email-Agent](https://github.com/ajaymanyam/Email-Agent)
+
+---
+
+## 🎯 Problem Statement
+
+Modern professionals and students receive dozens to hundreds of emails daily. Critical action items, follow-up deadlines, and meeting schedules frequently get buried beneath low-priority promotional messages and clutter. Furthermore, manually summarizing lengthy email threads, verifying phishing links, drafting polite responses across multiple accounts, and transferring deadlines into calendars consumes hours of productive time every week.
+
+**The Solution:** The **Intelligent Email Assistant** solves this by providing a unified, multi-account productivity workspace that connects directly to real email providers (Gmail & Outlook) using secure OAuth 2.0. It leverages Google Gemini AI to autonomously summarize threads, extract deliverables into Google Calendar, scan for phishing threats, compile natural language search queries, and prepare context-aware response drafts for instant review.
+
+---
+
 ## 🌟 Key Features & Capabilities
 
 ### 📬 1. Multi-Account Unified Inbox
