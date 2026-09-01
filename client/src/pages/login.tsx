@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { authApi } from '@/services/authApi';
 import { useAuthStore } from '@/store/authStore';
 import { getErrorMessage } from '@/services/api';
-import { Mail, Lock, ArrowRight, Loader2, Sparkles, ShieldCheck } from 'lucide-react';
+import { Mail, Lock, ArrowRight, ArrowLeft, Loader2, Sparkles, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const loginSchema = z.object({
@@ -46,14 +46,25 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#0b0f19] flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Floating Top-Left Back to Home */}
+      <div className="absolute top-6 left-6 z-20">
+        <Link
+          href="/"
+          className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 text-xs font-semibold backdrop-blur-md transition group shadow-lg"
+        >
+          <ArrowLeft className="w-3.5 h-3.5 text-slate-400 group-hover:-translate-x-0.5 transition-transform" />
+          <span>Back to Home</span>
+        </Link>
+      </div>
+
       {/* Glow backgrounds */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-md relative z-10">
         {/* Brand */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-2.5 mb-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25 text-white font-bold">
+          <Link href="/" className="inline-flex items-center space-x-2.5 mb-3 group transition-transform hover:scale-105">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25 text-white font-bold group-hover:shadow-blue-500/40 transition-shadow">
               <Mail className="w-5 h-5" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-400 via-indigo-300 to-white bg-clip-text text-transparent">
