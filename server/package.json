@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "node --max-old-space-size=4096 ./node_modules/ts-node-dev/lib/bin.js --respawn --transpile-only --exit-child src/index.ts",
-    "build": "node --max-old-space-size=8192 ./node_modules/typescript/bin/tsc",
+    "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
-    "typecheck": "node --max-old-space-size=8192 ./node_modules/typescript/bin/tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +24,8 @@
     "googleapis": "^176.0.0",
     "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.9.4"
+    "mongoose": "^9.9.4",
+    "typescript": "5.8.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.6",
@@ -35,7 +36,6 @@
     "@typescript-eslint/eslint-plugin": "8.68.0",
     "@typescript-eslint/parser": "8.68.0",
     "eslint": "10.9.1",
-    "ts-node-dev": "2.0.0",
-    "typescript": "5.8.3"
+    "ts-node-dev": "2.0.0"
   }
 }
